@@ -80,7 +80,7 @@ def add_cwd_segment(powerline):
     for i, name in enumerate(names):
         fg, bg = get_fg_bg(name)
 
-        separator = powerline.separator_thin
+        separator = powerline.separator
         separator_fg = Color.SEPARATOR_FG
         is_last_dir = (i == len(names) - 1)
         name_template = ' %s '
