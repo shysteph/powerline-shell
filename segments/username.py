@@ -10,7 +10,5 @@ def add_username_segment(powerline):
 
     if os.getenv('USER') == 'root':
         bgcolor = Color.USERNAME_ROOT_BG
-    else:
-        bgcolor = Color.USERNAME_BG
+        powerline.append(user_prompt, Color.USERNAME_FG, bgcolor)
 
-    powerline.append(user_prompt, Color.USERNAME_FG, bgcolor)

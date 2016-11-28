@@ -144,13 +144,13 @@ class RepoStats:
     def add_to_powerline(self, powerline, color):
         def add(_key, fg, bg):
             if self[_key]:
-                s = u" {}{} ".format(self.n_or_empty(_key), self.symbols[_key])
+                s = u"{}{}".format(self.n_or_empty(_key), self.symbols[_key])
                 powerline.append(s, fg, bg)
         add('ahead', color.GIT_AHEAD_FG, color.GIT_AHEAD_BG)
         add('behind', color.GIT_BEHIND_FG, color.GIT_BEHIND_BG)
         add('staged', color.GIT_STAGED_FG, color.GIT_STAGED_BG)
-        add('not_staged', color.GIT_NOTSTAGED_FG, color.GIT_NOTSTAGED_BG)
-        add('untracked', color.GIT_UNTRACKED_FG, color.GIT_UNTRACKED_BG)
+        #add('not_staged', color.GIT_NOTSTAGED_FG, color.GIT_NOTSTAGED_BG)
+        #add('untracked', color.GIT_UNTRACKED_FG, color.GIT_UNTRACKED_BG)
         add('conflicted', color.GIT_CONFLICTED_FG, color.GIT_CONFLICTED_BG)
 
 
@@ -195,6 +195,8 @@ if __name__ == "__main__":
             default=5, help='Maximum number of directories to show in path')
     arg_parser.add_argument('--cwd-max-dir-size', action='store', type=int,
             help='Maximum number of letters displayed for each directory in the path')
+    arg_parser.add_argument('--git-max-branch-size', action='store', type=int,
+            help='Maximum number of letters displayed for the git branch')
     arg_parser.add_argument('--colorize-hostname', action='store_true',
             help='Colorize the hostname based on a hash of itself.')
     arg_parser.add_argument('--mode', action='store', default='patched',

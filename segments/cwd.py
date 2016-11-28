@@ -76,15 +76,26 @@ def add_cwd_segment(powerline):
         # displayed, so chop everything else off
         names = names[-1:]
 
+    was_special = False
     for i, name in enumerate(names):
         fg, bg = get_fg_bg(name)
 
         separator = powerline.separator_thin
         separator_fg = Color.SEPARATOR_FG
         is_last_dir = (i == len(names) - 1)
-        if requires_special_home_display(name) or is_last_dir:
-            separator = None
-            separator_fg = None
+        name_template = ' %s '
+        #if requires_special_home_display(name):
+            #separator = None
+            #separator_fg = None
 
-        powerline.append(' %s ' % maybe_shorten_name(powerline, name), fg, bg,
+        #if requires_special_home_display(name):
+            #name_template = ' %s'
+        #if was_special:
+            #name_template = '%s '
+
+        powerline.append(name_template % maybe_shorten_name(powerline, name), fg, bg,
                          separator, separator_fg)
+
+        was_special = requires_special_home_display(name)
+
+

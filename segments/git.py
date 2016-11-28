@@ -56,6 +56,14 @@ def parse_git_stats(status):
     return stats
 
 
+def maybe_shorten_branch(powerline, branch):
+    """If the user has asked for each directory name to be shortened, will
+    return the name up to their specified length. Otherwise returns the full
+    name."""
+    if powerline.args.git_max_branch_size:
+        return branch[:powerline.args.git_max_branch_size]
+    return branch
+
 def add_git_segment(powerline):
     try:
         p = subprocess.Popen(['git', 'status', '--porcelain', '-b'],
@@ -86,5 +94,5 @@ def add_git_segment(powerline):
         bg = Color.REPO_DIRTY_BG
         fg = Color.REPO_DIRTY_FG
 
-    powerline.append(' %s ' % branch, fg, bg)
+    powerline.append(' %s ' % maybe_shorten_branch(powerline, branch), fg, bg)
     stats.add_to_powerline(powerline, Color)
