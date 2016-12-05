@@ -32,6 +32,12 @@ class Powerline:
             'separator': u'\uE0B0',
             'separator_thin': u'\uE0B1'
         },
+        'hack': {
+            'lock': u'\\[\e[s\\] \\[\e[u\uE0A2\\]',
+            'network': u'\\[\e[s\\] \\[\e[u\uE0A2\\]',
+            'separator': u'\\[\e[s\\] \\[\e[u\uE0B0\\]',
+            'separator_thin': u'\\[\e[s\\] \\[\e[u\uE0B1\\]'
+        },
         'flat': {
             'lock': '',
             'network': '',
@@ -201,7 +207,7 @@ if __name__ == "__main__":
             help='Colorize the hostname based on a hash of itself.')
     arg_parser.add_argument('--mode', action='store', default='patched',
             help='The characters used to make separators between segments',
-            choices=['patched', 'compatible', 'flat'])
+            choices=['patched', 'compatible', 'flat', 'hack'])
     arg_parser.add_argument('--shell', action='store', default='bash',
             help='Set this to your shell type', choices=['bash', 'zsh', 'bare'])
     arg_parser.add_argument('prev_error', nargs='?', type=int, default=0,
